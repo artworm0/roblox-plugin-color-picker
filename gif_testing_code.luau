@@ -7,4 +7,8 @@ end)
 
 local result = Picker:Prompt(workspace.Part.Color)
 
-print(Get255RGB(result)) 
+if result then
+	print(Get255RGB(result)) 
+else
+	print(result)
+end
