@@ -10,5 +10,5 @@ local result = Picker:Prompt(workspace.Part.Color)
 if result then
 	print(Get255RGB(result)) 
 else
-	print(result)
+	print(result) 
 end
