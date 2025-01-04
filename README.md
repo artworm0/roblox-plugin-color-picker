@@ -1,6 +1,8 @@
 # What is this?
 Straight up, this is identical copy of accustomed color picker gui that roblox uses. I've tried to script it to be as simillar as possible to one you usually see when choosing color in studio, both visually and mechanically. I did it for my own plugin needs, but then found a way to make my plugin easier without using any color pickers, thus I'm outsourcing it. Hope yall find a good use out of it!
 
+![RobloxStudioBeta_Zfb1QSdfoM](https://github.com/user-attachments/assets/a770a952-c545-448f-a81d-f654df176e11)
+
 # How to use?
 
 Firstly you need to copy code `color_picker.luau` inside your plugin code to use
