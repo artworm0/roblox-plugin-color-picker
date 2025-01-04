@@ -1,15 +1,15 @@
-type ColorPicker = {
-	Prompt : (self : ColorPicker, startingColor : Color3?) -> Color3?,
-	BindToChange : (self : ColorPicker, (Color3) -> nil) -> nil,
-	Set : (self : ColorPicker, color : Color3) -> nil,
-	Cancel : (self : ColorPicker, Color3?) -> nil,
-	Destroy : (self : ColorPicker) -> nil,
+type PluginColorPicker = {
+	Prompt : (self : PluginColorPicker, startingColor : Color3?) -> Color3?,
+	BindToChange : (self : PluginColorPicker, (Color3) -> nil) -> nil,
+	Set : (self : PluginColorPicker, color : Color3) -> nil,
+	Cancel : (self : PluginColorPicker, Color3?) -> nil,
+	Destroy : (self : PluginColorPicker) -> nil,
 }
 
 local RunService = game:GetService('RunService')
 
-local ColorPicker = {}
-ColorPicker.__index = ColorPicker
+local PluginColorPicker = {}
+PluginColorPicker.__index = PluginColorPicker
 
 local studioSettings = settings().Studio
 local themeChanged = studioSettings.ThemeChanged
@@ -196,11 +196,11 @@ local function CreateTextboxForBackground(textboxBackground)
 	textbox.Parent = textboxBackground
 end
 
-function ColorPicker.new(pluginGuiId : string) : ColorPicker
+function PluginColorPicker.new(pluginGuiId : string) : PluginColorPicker
 
 	assert(pluginGuiId, 'You should specify pluginGuiId as first argument when creating Color Picker!')
 
-	local self = setmetatable({}, ColorPicker)
+	local self = setmetatable({}, PluginColorPicker)
 
 	local dockWidgetPluginGui = plugin:CreateDockWidgetPluginGui(pluginGuiId, DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Float, false, true, 287, 419))
 	dockWidgetPluginGui.Title = 'Select Color'
@@ -963,7 +963,7 @@ function ColorPicker.new(pluginGuiId : string) : ColorPicker
 	return self
 end
 
-function ColorPicker:Set(color : Color3)
+function PluginColorPicker:Set(color : Color3)
 
 	self.color = color
 
@@ -1015,7 +1015,7 @@ function ColorPicker:Set(color : Color3)
 	if self.onChange then self.onChange(color) end
 end
 
-function ColorPicker:UpdateTheme()
+function PluginColorPicker:UpdateTheme()
 	local currentTheme = studioSettings.Theme
 	
 	-- do a mf buttons and main buttons..... 
@@ -1074,7 +1074,7 @@ function ColorPicker:UpdateTheme()
 	end
 end
 
-function ColorPicker:Prompt(startingColor : Color3?)
+function PluginColorPicker:Prompt(startingColor : Color3?)
 	if startingColor then self:Set(startingColor) end
 
 	self.DockWidgetPluginGui.Enabled = true
@@ -1106,19 +1106,19 @@ function ColorPicker:Prompt(startingColor : Color3?)
 	return result
 end
 
-function ColorPicker:Cancel(customColor : Color3?)
+function PluginColorPicker:Cancel(customColor : Color3?)
 	if self.running then task.spawn(self.running, customColor) end
 end
 
-function ColorPicker:BindToChange(fn : (Color3) -> ...any)
+function PluginColorPicker:BindToChange(fn : (Color3) -> ...any)
 	self.onChange = fn
 end
 
-function ColorPicker:IsOpened()
+function PluginColorPicker:IsOpened()
 	return self.DockWidgetPluginGui.Enabled
 end
 
-function ColorPicker:Destroy()
+function PluginColorPicker:Destroy()
 	for _, con in ipairs(self.cons) do
 		con:Disconnect()
 	end
