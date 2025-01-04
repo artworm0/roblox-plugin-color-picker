@@ -202,7 +202,7 @@ function ColorPicker.new(pluginGuiId : string) : ColorPicker
 
 	local self = setmetatable({}, ColorPicker)
 
-	local dockWidgetPluginGui = plugin:CreateDockWidgetPluginGui(pluginGuiId, DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Float, false, true, 287, 399, 287, 399))
+	local dockWidgetPluginGui = plugin:CreateDockWidgetPluginGui(pluginGuiId, DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Float, false, true, 287, 419))
 	dockWidgetPluginGui.Title = 'Select Color'
 
 	-- create gui objects
@@ -537,6 +537,8 @@ function ColorPicker.new(pluginGuiId : string) : ColorPicker
 				end
 			end)
 		end),
+		
+		
 	}
 
 	--
@@ -909,6 +911,46 @@ function ColorPicker.new(pluginGuiId : string) : ColorPicker
 				textboxBackground.UpArrow.ImageColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.SubText, Enum.StudioStyleGuideModifier.Default)
 			end
 		end)
+		
+		OKButton.MouseEnter:Connect(function()
+			OKButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Hover)
+			OKButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Hover)
+		end)
+		
+		OKButton.MouseLeave:Connect(function()
+			OKButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Default)
+			OKButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Default)
+		end)
+		
+		OKButton.MouseButton1Down:Connect(function()
+			OKButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Pressed)
+			OKButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Pressed)
+		end)
+		
+		OKButton.MouseButton1Up:Connect(function()
+			OKButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Default)
+			OKButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Default)
+		end)
+		
+		CancelButton.MouseEnter:Connect(function()
+			CancelButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Hover)
+			CancelButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Hover)
+		end)
+
+		CancelButton.MouseLeave:Connect(function()
+			CancelButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Default)
+			CancelButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Default)
+		end)
+
+		CancelButton.MouseButton1Down:Connect(function()
+			CancelButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Pressed)
+			CancelButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Pressed)
+		end)
+
+		CancelButton.MouseButton1Up:Connect(function()
+			CancelButton.BackgroundColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.Button, Enum.StudioStyleGuideModifier.Default)
+			CancelButton.BorderColor3 = studioSettings.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder, Enum.StudioStyleGuideModifier.Default)
+		end)
 	end
 
 	--
@@ -975,6 +1017,8 @@ end
 
 function ColorPicker:UpdateTheme()
 	local currentTheme = studioSettings.Theme
+	
+	-- do a mf buttons and main buttons..... 
 
 	self.Background.BackgroundColor3 = currentTheme:GetColor(Enum.StudioStyleGuideColor.MainBackground)
 
