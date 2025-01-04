@@ -1114,6 +1114,10 @@ function ColorPicker:BindToChange(fn : (Color3) -> ...any)
 	self.onChange = fn
 end
 
+function ColorPicker:IsOpened()
+	return self.DockWidgetPluginGui.Enabled
+end
+
 function ColorPicker:Destroy()
 	for _, con in ipairs(self.cons) do
 		con:Disconnect()
