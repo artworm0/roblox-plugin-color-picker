@@ -4,6 +4,7 @@ type PluginColorPicker = {
 	Set : (self : PluginColorPicker, color : Color3) -> nil,
 	Cancel : (self : PluginColorPicker, Color3?) -> nil,
 	Destroy : (self : PluginColorPicker) -> nil,
+	IsOpened : (self : PluginColorPicker) -> boolean,
 }
 
 local RunService = game:GetService('RunService')
