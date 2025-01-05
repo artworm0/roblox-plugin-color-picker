@@ -78,4 +78,12 @@ Picker:Prompt()
 Picker:Destroy() -- will destroy all gui and disconnect all connections
 ```
 
+### Check if it's opened
+Should be self explanatory
+```luau
+local Picker = PluginColorPicker.new('MyPlugin_ColorPicker_1')
+
+print(Picker:IsOpened())
+```
+
 
